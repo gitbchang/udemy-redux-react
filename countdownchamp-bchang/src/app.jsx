@@ -5,12 +5,16 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props);   
     this.state = {
       deadline: 'December 25, 2017',
       newDeadline: ''
     }
   }
+
+  // formPreventDefault = e => {
+  //   e.preventDefault();
+  // }
 
   changeDeadline = () => {
     this.setState({deadline: this.state.newDeadline});
@@ -25,8 +29,9 @@ class App extends Component {
         <Clock 
           deadline={this.state.deadline}
         />
-        <Form inline='true'>
+        <Form onSubmit={e => e.preventDefault()} inline={true}>
           <FormControl
+            className='Deadline-input'
             ref='dateSubmit'
             placeholder='new date'
             onChange={event => { this.setState({ newDeadline: event.target.value }); } }/>

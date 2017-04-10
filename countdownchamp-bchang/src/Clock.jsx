@@ -23,6 +23,7 @@ class Clock extends Component {
   }
 
   leading0(num) {
+    // ternary expression
     return num < 10 ? '0' + num : num;
     // if (num < 10) {
     //   return '0'+ num;
