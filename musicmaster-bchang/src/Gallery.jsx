@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import { Glyphicon } from 'react-bootstrap';
 
 class Gallery extends Component {
   constructor(props) {
@@ -11,9 +12,8 @@ class Gallery extends Component {
     }
   }
 
-  playAudio(previewUrl) {
+  playAudio = (previewUrl) => {
     let audio = new Audio(previewUrl);
-    audio.play();
     if(!this.state.playing) {
       audio.play();
       this.setState({
@@ -30,9 +30,9 @@ class Gallery extends Component {
         } else {
           this.state.audio.pause();
           audio.play();
-          this.setState({
-            playingUrl: previewUrl,
+          this.setState({            
             playing: true,
+            playingUrl: previewUrl,
             audio: audio
           })
       }
@@ -51,6 +51,16 @@ class Gallery extends Component {
           return (
             <div key={k} className='track' onClick={() => this.playAudio(track.preview_url)} >
               <img src={trackImg} className='track-img' alt="track"/>
+              <div className='track-play'>
+                <div className='track-play-inner'>
+                  
+                  {
+                    this.state.playingUrl === track.preview_url
+                    ? <Glyphicon glyph='pause'></Glyphicon>
+                    : <Glyphicon glyph='play'></Glyphicon>
+                  }
+                </div>
+              </div>
               <p className='track-text'>{track.name}</p>
             </div>
           )
