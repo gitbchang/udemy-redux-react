@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { firebaseApp } from '../firebase';
+import { connect } from 'react-redux';
 
 class App extends Component {
 
   signOut() {
     firebaseApp.auth().signOut();
   }
+
   render() {
     return (
       <div>
@@ -20,4 +22,9 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStatetoProps(state) {
+  console.log('state', state);
+  return {};
+}
+
+export default connect(mapStatetoProps, null)(App);
